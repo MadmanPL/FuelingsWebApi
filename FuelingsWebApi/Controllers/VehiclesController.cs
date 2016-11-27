@@ -20,7 +20,7 @@ namespace FuelingsWebApi.Controllers
             using (var context = new FuelingsContext())
             {
                 var userId = User.Identity.GetUserId();
-                return Ok(await context.Vehicles.Include(x => x.Fuelings).Where(x => x.UserId == userId).ToListAsync());
+                return Ok(await context.Vehicles.Include(x => x.Fuelings).Include("Fuelings.Fuel").Where(x => x.UserId == userId).ToListAsync());
             }
         }
     }
